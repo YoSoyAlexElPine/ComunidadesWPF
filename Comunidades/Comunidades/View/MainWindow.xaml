@@ -1,0 +1,302 @@
+﻿<Window x:Class="Comunidades.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Comunidades"
+        mc:Ignorable="d"
+        Title="Neighborhood association in a building" Height="587" Width="948"
+        Cursor="Pen"
+        >
+
+
+    <Grid Style="{StaticResource EstiloGridGeneral}">
+
+        <Label Style="{StaticResource EstiloLabelTitulo}" Content="Neighborhood Association" Margin="331,10,0,0"/>
+
+        <Grid Margin="0,100,0,0">
+            <TabControl Style="{StaticResource EstiloTabControl}" x:Name="tabControl" Grid.ColumnSpan="2">
+
+                <TabItem Style="{StaticResource EstiloTabItem}" Header="Make a neigborhood" >
+
+
+                    <StackPanel Style="{StaticResource EstiloStackPanel}">
+
+                        <Grid Style="{StaticResource EstiloGrid}" x:Name="grid_1" Visibility="Visible">
+
+                            <TextBlock Text="New Neighborhood" Style="{StaticResource EstiloTitulo}"></TextBlock>
+
+                            <Label Content="Name" Style="{StaticResource EstiloLabel}" Margin="181,94,0,0"/>
+                            <Label Content="Adress" Style="{StaticResource EstiloLabel}" Margin="181,145,0,0" />
+                            <Label Content="Date" Style="{StaticResource EstiloLabel}" Margin="181,200,0,0"/>
+                            <Label Content="Meters" Style="{StaticResource EstiloLabel}" Margin="181,256,0,0"/>
+
+
+                            <TextBox x:Name="tb_meters" Style="{StaticResource EstiloTextBox}" Margin="371,256,0,0" TextChanged="TB_Cambio" PreviewTextInput="Solo_Numeros"/>
+                            <TextBox x:Name="tb_name" Style="{StaticResource EstiloTextBox}" Margin="371,93,0,0" TextWrapping="Wrap" TextChanged="TB_Cambio" />
+                            <TextBox x:Name="tb_adress" Style="{StaticResource EstiloTextBox}" Margin="371,145,0,0" TextWrapping="Wrap" TextChanged="TB_Cambio" />
+
+                            <DatePicker Style="{StaticResource EstiloDatePicker}" x:Name="dp_fecha" Margin="371,200,0,0" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+
+                            <Button x:Name="b_next_1" Style="{StaticResource EstiloBoton}" Content="Next" Margin="576,382,0,0" IsEnabled="False" Click="b_next_Click_1"/>
+
+
+                        </Grid>
+
+                        <Grid Style="{StaticResource EstiloGrid}" x:Name="grid_2" Visibility="Collapsed">
+
+                            <Label Style="{StaticResource EstiloLabel}" Content="Gatekeeper" Margin="173,14,0,0"/>
+                            <Label Style="{StaticResource EstiloLabel}" Content="Shower and toilets&#xA;" Margin="173,65,0,0"/>
+                            <Label Style="{StaticResource EstiloLabel}" Content="Play area" Margin="173,120,0,0"/>
+                            <Label Style="{StaticResource EstiloLabel}" Content="Exercise area" Margin="173,176,0,0"/>
+                            <Label Style="{StaticResource EstiloLabel}" Content="Meeting room" Margin="173,227,0,0"/>
+                            <Label Style="{StaticResource EstiloLabel}" Content="Tennis court" Margin="173,281,0,0"/>
+                            <Label Style="{StaticResource EstiloLabel}" Content="Padel court" Margin="173,332,0,0"/>
+                            <Label Style="{StaticResource EstiloLabel}" Content="Pool" Margin="173,377,0,0"/>
+
+
+
+                            <ToggleButton Style="{StaticResource EstiloToggleButton}" x:Name="Toggle_gatekeeper"/>
+                            <ToggleButton Style="{StaticResource EstiloToggleButton}" x:Name="Toggle_shower" Margin="396,71,212,333"/>
+                            <ToggleButton Style="{StaticResource EstiloToggleButton}" x:Name="Toggle_play" Margin="396,122,212,282"/>
+                            <ToggleButton Style="{StaticResource EstiloToggleButton}" x:Name="Toggle_exercise" Margin="396,179,212,225"/>
+                            <ToggleButton Style="{StaticResource EstiloToggleButton}" x:Name="Toggle_meeting" Margin="396,231,212,173"/>
+                            <ToggleButton Style="{StaticResource EstiloToggleButton}" x:Name="Toggle_tenis" Margin="396,285,212,119"/>
+                            <ToggleButton Style="{StaticResource EstiloToggleButton}" x:Name="Toggle_padel" Margin="396,334,212,70"/>
+                            <ToggleButton Style="{StaticResource EstiloToggleButton}" x:Name="Toggle_piscina" Margin="396,379,212,25"/>
+
+
+
+                            <Button Style="{StaticResource EstiloBoton}" x:Name="b_next_2"  Content="Finish" Margin="576,382,0,0" Click="b_next_Click_2" />
+                            <Button Style="{StaticResource EstiloBoton}" x:Name="b_previus_2" Content="Previus" Margin="500,382,0,0" Click="b_previus_Click_2" />
+                        </Grid>
+
+                    </StackPanel>
+                </TabItem>
+                <TabItem Style="{StaticResource EstiloTabItem}" x:Name="tabItem2" PreviewMouseDown="tabItem2_MouseDown" Header="Communities" >
+                    <StackPanel Style="{StaticResource EstiloStackPanel}">
+                        <Grid Style="{StaticResource EstiloGrid}">
+                            <DataGrid Style="{StaticResource MaterialDataGrid}" x:Name="dg_comunidades" Margin="20,10,0,10"
+                                >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Nombre}" Header="Nombre"/>
+                                    <DataGridTextColumn Binding="{Binding Direccion}" Header="Direccion" Width="*"/>
+                                    <DataGridTextColumn Binding="{Binding Fecha}" Header="Fecha" Width="*"/>
+                                    <DataGridTextColumn Binding="{Binding Metros}" Header="Metros" Width="*"/>
+                                    <DataGridCheckBoxColumn Binding="{Binding Padel}" Header="Padel" Width="*"/>
+                                    <DataGridCheckBoxColumn Binding="{Binding Tenis}" Header="Tenis" Width="*"/>
+                                    <DataGridCheckBoxColumn Binding="{Binding Meeting}" Header="Meeting" Width="*"/>
+                                    <DataGridCheckBoxColumn Binding="{Binding Exercise}" Header="Exercise" Width="*"/>
+                                    <DataGridCheckBoxColumn Binding="{Binding Play}" Header="Play" Width="*"/>
+                                    <DataGridCheckBoxColumn Binding="{Binding Shower}" Header="Shower" Width="*"/>
+                                    <DataGridCheckBoxColumn Binding="{Binding Portero}" Header="Portero" Width="*"/>
+                                    <DataGridCheckBoxColumn Binding="{Binding Piscina}" Header="Piscina" Width="*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+
+                    </StackPanel>
+                </TabItem>
+                <TabItem Style="{StaticResource EstiloTabItem}" x:Name="tabItem_portals" PreviewMouseDown="tabItem_portals_MouseDown" Header="Portals">
+                    <StackPanel Style="{StaticResource EstiloStackPanel}">
+                        <Grid Style="{StaticResource EstiloGrid}">
+                            <DataGrid x:Name="dg_portales" Style="{StaticResource MaterialDataGrid}" Margin="440,32,10,222" ItemsSource="{Binding Comunidades}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding ProtalId}" Header="Id"/>
+                                    <DataGridTextColumn Binding="{Binding Escaleras}" Header="Escaleras" Width="*"/>
+                                    <DataGridTextColumn Binding="{Binding ComunidadId}" Header="Comunidad" Width="*"/>
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <ComboBox Style="{StaticResource EstiloComboBox}" x:Name="cb_comunidades_portals" Margin="199,52,0,0"/>
+
+                            <TextBox Style="{StaticResource EstiloTextBoxLite}" x:Name="tb_stairs_portals" Margin="199,97,0,0" PreviewTextInput="Solo_Numeros"/>
+
+                            <Button Style="{StaticResource EstiloBoton}" x:Name="b_refresh_1" Content="Refresh" Margin="440,273,0,0" Click="b_refresh_1_Click"/>
+                            <Button Style="{StaticResource EstiloBoton}" x:Name="b_save_portals" Content="Save" Margin="228,222,0,0" Click="b_save_portals_Click"/>
+
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,52,0,0" Text="Neigborhood" />
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,93,0,0" Text="Stairs"/>
+
+                            <TextBlock Style="{StaticResource EstiloTitulo}" HorizontalAlignment="Left" Margin="21,10,0,0" Text="New Portal"></TextBlock>
+                        </Grid>
+
+                    </StackPanel>
+                </TabItem>
+                <TabItem Style="{StaticResource EstiloTabItem}" x:Name="tabItem_stairs" PreviewMouseDown="tabItem_stairs_MouseDown" Header="Stairs">
+                    <StackPanel Style="{StaticResource EstiloStackPanel}">
+                        <Grid Style="{StaticResource EstiloGrid}">
+                            <DataGrid x:Name="dg_escaleras" Style="{StaticResource MaterialDataGrid}" Margin="440,32,10,222" ItemsSource="{Binding Comunidades}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Nombre}" Header="Nombre"/>
+                                    <DataGridTextColumn Binding="{Binding Direccion}" Header="Direccion" Width="*"/>
+                                    <DataGridTextColumn Binding="{Binding Fecha}" Header="Fecha" Width="*"/>
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+
+                            <ComboBox Style="{StaticResource EstiloComboBox}" x:Name="cb_comunidades_stairs" SelectionChanged="cb_comunidades_stairs_SelectionChanged" Margin="199,52,0,0"/>
+                            <ComboBox Style="{StaticResource EstiloComboBox}" x:Name="cb_portales_stairs" Margin="199,105,0,0"/>
+
+
+                            <Button Style="{StaticResource EstiloBoton}" x:Name="b_refresh_2" Content="Refresh" Margin="440,273,0,0" Click="b_next_Click_1"/>
+                            <Button Style="{StaticResource EstiloBoton}" x:Name="b_save_stairs"  Content="Save" Margin="228,222,0,0" Click="b_save_stairs_Click"/>
+
+                            <TextBox Style="{StaticResource EstiloTextBoxLite}" x:Name="tb_floors_stairs" Margin="199,162,0,0" PreviewTextInput="Solo_Numeros"/>
+
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,52,0,0" Text="Neighborhood"/>
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,158,0,0" Text="Floors"/>
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,105,0,0" Text="Portal"/>
+
+                            <TextBlock Style="{StaticResource EstiloTitulo}" Margin="21,10,0,0" Text="New Stair"></TextBlock>
+
+                        </Grid>
+
+                    </StackPanel>
+                </TabItem>
+                
+                
+                
+                <TabItem Style="{StaticResource EstiloTabItem}" x:Name="tabItem_floor" PreviewMouseDown="tabItem_floor_PreviewMouseDown" Header="Floor">
+                    <StackPanel Style="{StaticResource EstiloStackPanel}">
+                        <Grid Style="{StaticResource EstiloGrid}">
+                            <DataGrid Style="{StaticResource MaterialDataGrid}" x:Name="dg_planta"  Margin="440,32,10,222" ItemsSource="{Binding Comunidades}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Nombre}" Header="Nombre"/>
+                                    <DataGridTextColumn Binding="{Binding Direccion}" Header="Direccion" Width="*"/>
+                                    <DataGridTextColumn Binding="{Binding Fecha}" Header="Fecha" Width="*"/>
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+
+                            <ComboBox Style="{StaticResource EstiloComboBox}" x:Name="cb_comunidades_floor" SelectionChanged="cb_comunidades_floor_SelectionChanged" Margin="199,52,0,0"/>
+                            <ComboBox Style="{StaticResource EstiloComboBox}" x:Name="cb_portales_floor" SelectionChanged="cb_escaleras_floor_SelectionChanged" Margin="199,93,0,0"/>
+                            <ComboBox Style="{StaticResource EstiloComboBox}" x:Name="cb_escaleras_floor" Margin="199,138,0,0"/>
+
+
+                            <Button Style="{StaticResource EstiloBoton}" Content="Refresh" Margin="440,273,0,0" Click="b_next_Click_1"/>
+                            <Button Style="{StaticResource EstiloBoton}" Content="Save"  Margin="228,222,0,0" Click="b_save_floor"/>
+
+                            <TextBox Style="{StaticResource EstiloTextBoxLite}" x:Name="tb_apartamentos_floor"  Margin="199,173,0,0" PreviewTextInput="Solo_Numeros"/>
+
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,52,0,0" Text="Neighborhood"/>
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,169,0,0" Text="Apartments"/>
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,138,0,0" Text="Stair"/>
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,93,0,0" Text="Portal"/>
+
+                            <TextBlock Style="{StaticResource EstiloTitulo}" Margin="21,10,0,0" Text="New Floor"/>
+                        </Grid>
+
+                    </StackPanel>
+                </TabItem>
+                <TabItem Style="{StaticResource EstiloTabItem}" x:Name="tabItem_apartamento" PreviewMouseDown="tabItem_MouseDown_apartamento" Header="Apartmets">
+                    <StackPanel Style="{StaticResource EstiloStackPanel}">
+                        <Grid Style="{StaticResource EstiloGrid}" Cursor="Pen">
+                            <DataGrid x:Name="dg_apartamentos" Style="{StaticResource MaterialDataGrid}" Margin="440,32,10,222" ItemsSource="{Binding Comunidades}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Nombre}" Header="Nombre"/>
+                                    <DataGridTextColumn Binding="{Binding Direccion}" Header="Direccion" Width="*"/>
+                                    <DataGridTextColumn Binding="{Binding Fecha}" Header="Fecha" Width="*"/>
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+
+                            <ComboBox Style="{StaticResource EstiloComboBox}" x:Name="cb_comunidades_apartamento" SelectionChanged="cb_comunidades_apartamento_SelectionChanged" Margin="199,52,0,0"/>
+                            <ComboBox Style="{StaticResource EstiloComboBox}" x:Name="cb_portales_apartamento" SelectionChanged="cb_portales_apartamento_SelectionChanged" Margin="199,93,0,0"/>
+                            <ComboBox Style="{StaticResource EstiloComboBox}" x:Name="cb_escaleras_apartamento" SelectionChanged="cb_escaleras_apartamento_SelectionChanged" Margin="199,138,0,0"/>
+                            <ComboBox Style="{StaticResource EstiloComboBox}" x:Name="cb_planta_apartamento" Margin="199,175,0,0"/>
+
+
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,52,0,0" Text="Neighborhood"/>
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,175,0,0" Text="Floor"></TextBlock>
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,138,0,0" Text="Stair"/>
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,93,0,0" Text="Portal"/>
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,209,0,0" Text="Char"></TextBlock>
+
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" HorizontalAlignment="Left" Margin="21,10,0,0" FontSize="18" TextWrapping="Wrap" VerticalAlignment="Top" Height="27" Width="224"><Run Language="es-es" Text="New Apartment"/></TextBlock>
+
+
+                            <TextBox Style="{StaticResource EstiloTextBoxLite}" x:Name="tb_letra_apartamento" PreviewTextInput="Solo_Palabras" Margin="199,0,0,0" VerticalAlignment="Center"/>
+
+
+                            <Button Style="{StaticResource EstiloBoton}" x:Name="b_refresh_apartamento" Content="Refresh"  Margin="440,273,0,0" Click="b_next_Click_1"/>
+                            <Button Style="{StaticResource EstiloBoton}" x:Name="b_save_apartamento" Content="Save" Margin="228,273,0,0" Click="b_save_apartamento_Click"/>
+
+                        </Grid>
+
+
+
+
+                    </StackPanel>
+                </TabItem>
+
+
+                <TabItem Style="{StaticResource EstiloTabItem}" x:Name="tabItem_propietario" PreviewMouseDown="tabItem_MouseDown_propietario" Header="Owner" >
+                    <StackPanel Style="{StaticResource EstiloStackPanel}">
+                        <Grid Style="{StaticResource EstiloGrid}" x:Name="g_propietario_1" Visibility="Visible">
+                            <DataGrid x:Name="dg_propietario" Style="{StaticResource MaterialDataGrid}" Margin="440,32,10,222" ItemsSource="{Binding Comunidades}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Nombre}" Header="Nombre"/>
+                                    <DataGridTextColumn Binding="{Binding Direccion}" Header="Direccion" Width="*"/>
+                                    <DataGridTextColumn Binding="{Binding Fecha}" Header="Fecha" Width="*"/>
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <ComboBox x:Name="cb_comunidades_propietario" Style="{StaticResource EstiloComboBox}" SelectionChanged="cb_comunidades_propietario_SelectionChanged" Margin="199,52,0,0"/>
+                            <ComboBox x:Name="cb_portales_propietario" Style="{StaticResource EstiloComboBox}" SelectionChanged="cb_portales_propietario_SelectionChanged" HorizontalAlignment="Left" Margin="199,93,0,0"/>
+                            <ComboBox x:Name="cb_escaleras_propietario" Style="{StaticResource EstiloComboBox}" SelectionChanged="cb_escaleras_propietario_SelectionChanged" HorizontalAlignment="Left" Margin="199,138,0,0"/>
+                            <ComboBox x:Name="cb_planta_propietario" Style="{StaticResource EstiloComboBox}" SelectionChanged="cb_apartamento_propietario_SelectionChanged" HorizontalAlignment="Left" Margin="199,175,0,0"/>
+                            <ComboBox x:Name="cb_apartamento_propietario" Style="{StaticResource EstiloComboBox}" SelectionChanged="cb_apartamento_propietario_SelectionChanged_1" Margin="199,209,0,0"/>
+
+
+
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,52,0,0" Text="Neigborhood"/>
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Text="Floor" Margin="77,175,0,0"/>
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Text="Stair" Margin="77,138,0,0"/>
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Text="Portal" Margin="77,93,0,0"/>
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Text="Apartment" Margin="77,209,0,0"/>
+
+                            <TextBlock Style="{StaticResource EstiloTitulo}" Margin="21,10,0,0" Text="New Owner"></TextBlock>
+
+
+
+                            <Button Style="{StaticResource EstiloBoton}" Content="Refresh" Margin="440,273,0,0" Click="b_next_Click_1"/>
+                            <Button Style="{StaticResource EstiloBoton}" x:Name="b_next_propietario" IsEnabled="False" Content="Next" Margin="228,273,0,0" Click="b_next_propietario_Click"/>
+
+                        </Grid>
+                        <Grid Style="{StaticResource EstiloGrid}" x:Name="g_propietario_2" Visibility="Collapsed">
+
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,66,0,0"><Run Language="es-es" Text="DNI"/></TextBlock>
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,169,0,0"><Run Language="es-es" Text="Locality"/></TextBlock>
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,136,0,0"><Run Language="es-es" Text="Surname"/></TextBlock>
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,102,0,0"><Run Language="es-es" Text="Name"/></TextBlock>
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,209,0,0"><Run Language="es-es" Text="Address"/></TextBlock>
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,245,0,0"><Run Language="es-es" Text="Postal code"/></TextBlock>
+                            <TextBlock Style="{StaticResource EstiloTextBlock}" Margin="77,279,0,0"><Run Language="es-es" Text="Provincia"/></TextBlock>
+
+                            <TextBlock Style="{StaticResource EstiloTitulo}" Margin="21,10,0,0" Text="New Owner"></TextBlock>
+
+
+                            <Button Style="{StaticResource EstiloBoton}" x:Name="b_save_propietario" Content="Save" Margin="228,354,0,0" Click="b_save_propietario_Click"/>
+                            <Button Style="{StaticResource EstiloBoton}" x:Name="b_previus_propietario" Content="Previus" Margin="77,354,0,0" Click="b_previus_propietario_Copiar_Click"/>
+
+                            <TextBox Style="{StaticResource EstiloTextBoxLite}" x:Name="tb_cp" Margin="173,245,0,0" PreviewTextInput="Solo_Numeros"/>
+                            <TextBox Style="{StaticResource EstiloTextBoxLite}" x:Name="tb_provincia" Margin="173,281,0,0"/>
+                            <TextBox Style="{StaticResource EstiloTextBoxLite}" x:Name="tb_localidad" Margin="173,173,0,0"/>
+                            <TextBox Style="{StaticResource EstiloTextBoxLite}" x:Name="tb_direccion"  Margin="173,209,0,0"/>
+                            <TextBox Style="{StaticResource EstiloTextBoxLite}" x:Name="tb_apellido" Margin="173,140,0,0"/>
+                            <TextBox Style="{StaticResource EstiloTextBoxLite}" x:Name="tb_dni" Margin="173,68,0,0"/>
+                            <TextBox Style="{StaticResource EstiloTextBoxLite}" x:Name="tb_nombre"   Margin="173,104,0,0"/>
+
+                        </Grid>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</Window>
